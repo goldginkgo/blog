@@ -1,7 +1,7 @@
 ---
 title: Setup Shadowsocks to Visit Google in China
 date: 2018-02-08 19:18:08
-tags:
+tags: VPN
 ---
 1. Register for a cheap VPS provider. I will take [Vultr](https://www.vultr.com) for example.
 
