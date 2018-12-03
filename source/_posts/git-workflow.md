@@ -11,6 +11,8 @@ There are different kinds of Git workflows. But here we suggest the following Gi
 
 In the future, we will move towards trunk based development.
 
+<!-- more -->
+
 1. Clone a repository.
 ```
 git clone https://<url>.git

@@ -2,12 +2,15 @@
 title: How to find apps with high CPU usage for a Diego cell VM.
 date: 2018-06-30 18:56:10
 categories: Cloud
-tags: Cloud Foundry
+tags:
+  - Cloud Foundry
 ---
 
 According to [Understanding Container Security](https://docs.cloudfoundry.org/concepts/container-security.html), each container in Cloud Foundry use a fair share of CPU relative to the other containers. However, an app container can use much higher CPU resources when other containers in the same Diego Cell VM are idle if we don't set limitation for CPU usage of app containsers.
 
 It would be rather difficult to figure out the apps that is causing the trouble if we don't have application level monitoring.
+
+<!-- more -->
 
 One way to achieve our goal is to use Cloud Foundry [top](https://github.com/ECSTeam/cloudfoundry-top-plugin) plugin. But here I also want to show the procedures on how to do it manually.
 

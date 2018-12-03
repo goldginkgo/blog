@@ -2,7 +2,8 @@
 title: Setup Concourse in Ubuntu from scratch with Proxy
 date: 2018-07-03 21:19:32
 categories: DevOps
-tags: Concourse
+tags:
+  - Concourse
 ---
 Concourse is a greate tool for CI/CD.
 Here is a guide to setup Concourse on Ubuntu 18.04 from scratch in Corporate environment.
@@ -17,6 +18,7 @@ nameserver <dns-server>
 $ sudo vi /etc/hosts
 127.0.0.1       localhost.localdomain   localhost frankvm
 ```
+<!-- more -->
 
 3. Install cntlm
 ```

@@ -2,7 +2,8 @@
 title: Setup Kubernetes with kubeadm in CentOS VMs
 date: 2018-11-03 19:09:30
 categories: Cloud
-tags: Kubernetes
+tags:
+  - Kubernetes
 ---
 
 Here is a guide on how to setup Kubernetes on two CentOS 7 VMs (master and node).
@@ -17,6 +18,8 @@ sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
 #/dev/mapper/centos-swap swap                    swap    defaults        0 0
 ```
 Execute `swapoff -a`.
+
+<!-- more -->
 
 3. Enable IP forwarding or iptables. (both)
 ```

@@ -2,13 +2,16 @@
 title: How to Use Cloud Foundry Services From outside the Cloud Envivonment
 date: 2018-08-17 20:40:10
 categories: Cloud
-tags: Cloud Foundry
+tags:
+  - Cloud Foundry
 ---
 Based on NGINX buildpack and TCP routing feature in Cloud Foundry, we can implement an NGINX app on cloud foundry which acts as a reverse proxy for Cloud Foundry services.
 
 By accessing the app, we will be able to use Cloud Foundry services (RabbitMQ, Redis, ...) from outside Cloud Foundry.
 
 Let's take RabbitMQ/AMQP protocol for example, here are the steps:
+
+<!-- more -->
 
 1. Login to your org and space in Cloud Foundry, add a RabbitMQ service instance.
 

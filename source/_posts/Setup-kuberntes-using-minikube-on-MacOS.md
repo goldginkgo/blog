@@ -1,7 +1,8 @@
 ---
 title: Setup Kuberntes using minikube on MacOS
 date: 2018-11-01 20:01:06
-tags: Kubernetes
+tags:
+  - Kubernetes
 ---
 Here is guide on how to setup Kubernetes 1.12 using minikube 0.30 on MacOS.
 
@@ -11,6 +12,7 @@ Here is guide on how to setup Kubernetes 1.12 using minikube 0.30 on MacOS.
 ```
 export http_proxy=http://192.168.1.107:1087;export https_proxy=http://192.168.1.107:1087;export no_proxy=localhost,127.0.0.0/8,192.0.0.0/8;
 ```
+<!-- more -->
 
 3. Install and start docker
 

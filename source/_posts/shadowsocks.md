@@ -1,13 +1,16 @@
 ---
 title: Setup Shadowsocks to Visit Google in China
 date: 2018-02-08 19:18:08
-tags: VPN
+tags:
+  - VPN
 ---
 1. Register for a cheap VPS provider. I will take [Vultr](https://www.vultr.com) for example.
 
 2. Upload your SSH key to Vultr. An SSH Key allows you to log into your server without needing a password. SSH Keys can be automatically added to servers during the installation process.
 
 3. Create a Ubuntu 18.04 host in your VPS with your SSH key specified, and set location to places where have access to Google. (e.g. Los Angeles)
+
+<!-- more -->
 
 4. Login to VPS host and install shadowsocks service. [Disable ssh timeout](http://queirozf.com/entries/disabling-ssh-timeout-when-connecting-to-from-ubuntu).
 

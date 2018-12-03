@@ -6,6 +6,7 @@
 title: goldginkgo's Blog
 subtitle: Will Code For Food
 description: Hope is a good thing.
+keywords:
 author: goldginkgo
 language: en
 timezone:
@@ -81,3 +82,10 @@ deploy:
   type: git
   repository: https://github.com/goldginkgo/goldginkgo.github.io.git
   branch: master
+
+# Symbols count and time to read of articles.
+symbols_count_time:
+  symbols: true
+  time: true
+  total_symbols: true
+  total_time: true
