@@ -7,16 +7,16 @@ tags:
 ---
 
 According to [Understanding Container Security](https://docs.cloudfoundry.org/concepts/container-security.html), each container in Cloud Foundry use a fair share of CPU relative to the other containers. However, an app container can use much higher CPU resources when other containers in the same Diego Cell VM are idle if we don't set limitation for CPU usage of app containsers.
-
-It would be rather difficult to figure out the apps that is causing the trouble if we don't have application level monitoring.
-
 <!-- more -->
+It would be rather difficult to figure out the apps that is causing the trouble if we don't have application level monitoring.
 
 One way to achieve our goal is to use Cloud Foundry [top](https://github.com/ECSTeam/cloudfoundry-top-plugin) plugin. But here I also want to show the procedures on how to do it manually.
 
 Before we actually start, I want to give some steps on how to find the Diego Cell VM information based on an application instace.
 
-1. cf login to your org and space, use commands below to get IP address of the cell. CPU and Memory usage is also shown in this command.
+## Mapping of Diego Cell and Cloud Foundry apps
+### Get mapping information of Diego Cell and Cloud Foundry apps
+cf login to your org and space, use commands below to get IP address of the cell. CPU and Memory usage is also shown in this command.
 ```
 $ cf app web-app-bb --guid
 c07cf94e-3c43-41b6-9e1b-e77231fa2058
@@ -46,7 +46,8 @@ $ cf curl /v2/apps/c07cf94e-3c43-41b6-9e1b-e77231fa2058/stats
    }
 }
 ```
-2. Login to Bosh, and execute the following command to ssh to the Diego cell VM.
+### SSH to Diego cell VM
+Login to Bosh, and execute the following command to ssh to the Diego cell VM.
 ```
 $ bosh -e pcf log-in
 $ bosh -e pcf -d cf-c16bf7a74c8a95e1e6eb vms | grep 10.48.16.166
@@ -55,7 +56,9 @@ $ bosh -e pcf -d cf-c16bf7a74c8a95e1e6eb ssh diego_cell/9dd712e7-31d2-4d44-845f-
 ```
 
 Now let's go on with the steps to find applications based on the Deigo cell VM.
-1. Login to Diego cell VM and check the stats on the VM. You will get resulst like following, first half of process_guid is the actuall App GUID.
+## Find applications on a Deigo cell VM
+### Check stats on Diego cell
+Login to Diego cell VM and check the stats on the VM. You will get resulst like following, first half of process_guid is the actuall App GUID.
 ```
 diego_cell/9dd712e7-31d2-4d44-845f-91bd7495e9bd:~$ cd /var/vcap/jobs/rep/config/certs; curl -k -s https://localhost:1801/state --cert server.crt --key server.key | python -m json.tool
 {
@@ -87,7 +90,7 @@ diego_cell/9dd712e7-31d2-4d44-845f-91bd7495e9bd:~$ cd /var/vcap/jobs/rep/config/
 ...
 ```
 
-2. Get all app GUIDs using commands below.
+### Get all app GUIDs on Diego cell
 ```
 diego_cell/9dd712e7-31d2-4d44-845f-91bd7495e9bd:/var/vcap/jobs/rep/config/certs$ cd /var/vcap/jobs/rep/config/certs; curl -k -s https://localhost:1801/state --cert server.crt --key server.key | python -m json.tool | grep "process_guid" |cut -d ':' -f2|cut -c 3-38
 c07cf94e-3c43-41b6-9e1b-e77231fa2058
@@ -105,7 +108,8 @@ d048268a-e60b-481a-a5cc-ff39fdbf1eb2
 e7428432-b459-4111-b813-4fb6dfc7884f
 ```
 
-3. Login to Cloud Foundry with admin account and using following shell script to get apps names. app_guids is a file with contents from previous step.
+### Get apps with CPU info
+Login to Cloud Foundry with admin account and using following shell script to get apps names. app_guids is a file with contents from previous step.
 ```
 filename="app_guids"
 cat $filename | while read LINE

@@ -8,18 +8,17 @@ tags:
 A Git Workflow is a recipe or recommendation for how to use Git to accomplish work in a consistent and productive manner.
 
 There are different kinds of Git workflows. But here we suggest the following Git workflow to be used.
+<!-- more -->
 
 In the future, we will move towards trunk based development.
 
-<!-- more -->
-
-1. Clone a repository.
+### Clone a repository
 ```
 git clone https://<url>.git
 cd <project-name>
 ```
 
-2. Create a branch for a specific task.
+### Create a branch
 ```
 git checkout -b <branch-name>
 create a feature branch:  git checkout -b feature/<name>
@@ -29,7 +28,8 @@ create a bug-fix branch from a release branch: git checkout -b release/1.0  rele
 create branch from a tag: git checkout -b <Hotfix branch> <TAG>
 ```
 
-3. After code development in our local machine, do proper testing and commit changes to our local branch.
+### Commit to local branch
+After code development in our local machine, do proper testing and commit changes to our local branch
 [A guideline to commit messages](https://gist.github.com/robertpainsi/b632364184e70900af4ab688decf6f53)
 
 ```
@@ -41,7 +41,8 @@ Undo a change: https://blog.github.com/2015-06-08-how-to-undo-almost-anything-wi
 change a commit message https://help.github.com/articles/changing-a-commit-message/
 ```
 
-4. Rebase our new branch with master. (https://docs.gitlab.com/ee/university/training/topics/merge_conflicts.html)
+### Rebase new branch with master
+https://docs.gitlab.com/ee/university/training/topics/merge_conflicts.html)
 ```
 git checkout master
 git pull origin master
@@ -52,19 +53,19 @@ git add .
 git rebase --continue
 ```
 
-5. Push local branch to remote repository. 
+### Push local branch to remote repository
 ```
 git push origin <branch-name>
 ```
 
-6. Create a merge request on master branch.
+### Create a merge request on master branch
 
-7. Review the commit and merge the code if it's ok.
+### Review the commit and merge the code if it's ok
 If testing for master branch fails, go back to step 3.
 
-8. Create [tags](https://docs.gitlab.com/ee/university/training/topics/tags.html) and [releases](https://docs.gitlab.com/ee/workflow/releases.html).
+### Create [tags](https://docs.gitlab.com/ee/university/training/topics/tags.html) and [releases](https://docs.gitlab.com/ee/workflow/releases.html)
 
-Future Reading:
+### Future Reading
 
 [Gitflow model](https://nvie.com/posts/a-successful-git-branching-model/)
 

@@ -8,6 +8,7 @@ tags:
 ### What is Git?
 Distributed version control system and source code management system.
 Git can keep track of changes.
+<!-- more -->
 
 ### GIT vs SVN?
 SVN uses a central server to store all files and enables team collaboration.
@@ -15,8 +16,6 @@ If the central server goes down, no one can collaborate at all.
 
 Git checkout fully mirror the repository.
 If the server goes down, then the repository from any client can be copied back to the server to restore it. And we can perform many operations when you are offline.
-
-<!-- more -->
 
 ### Advantages of GIT?
 Free and open source

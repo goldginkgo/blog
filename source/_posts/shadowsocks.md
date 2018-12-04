@@ -4,17 +4,21 @@ date: 2018-02-08 19:18:08
 tags:
   - VPN
 ---
-1. Register for a cheap VPS provider. I will take [Vultr](https://www.vultr.com) for example.
-
-2. Upload your SSH key to Vultr. An SSH Key allows you to log into your server without needing a password. SSH Keys can be automatically added to servers during the installation process.
-
-3. Create a Ubuntu 18.04 host in your VPS with your SSH key specified, and set location to places where have access to Google. (e.g. Los Angeles)
-
+Here is a guilde on how to setup Shadowssocks to visit blocked websites like Google in China.
 <!-- more -->
+### Register for a VPS provider
+I will take [Vultr](https://www.vultr.com) for example.
 
-4. Login to VPS host and install shadowsocks service. [Disable ssh timeout](http://queirozf.com/entries/disabling-ssh-timeout-when-connecting-to-from-ubuntu).
+### Upload your SSH key to Vultr
+An SSH Key allows you to log into your server without needing a password. SSH Keys can be automatically added to servers during the installation process.
 
-5. Execute the following script, or add this script as startup script when creating the vm. Logs for shadowsocks are in /var/log/shadowsocks.log.
+### Create a Ubuntu 18.04 VM
+Create a Ubuntu 18.04 VM in your VPS with your SSH key specified, and set location to places where have access to Google. (e.g. Los Angeles)
+
+### [Disable ssh timeout](http://queirozf.com/entries/disabling-ssh-timeout-when-connecting-to-from-ubuntu).
+
+### Install shadowsocks service on VPS host
+Execute the following script, or add this script as startup script when creating the vm. Logs for shadowsocks are in /var/log/shadowsocks.log.
 ``` bash
 #!/bin/sh
 
@@ -53,9 +57,10 @@ ssserver -c /etc/shadowsocks.json -d start
 
 ```
 
-6. Download [MacOS Client](https://github.com/shadowsocks/ShadowsocksX-NG/releases), install, and enter server IP, port, password information in client. Change shadowsocks "HTTP proxy listen ip" to local ip. e.g 192.168.1.107. use 'ipconfig getifaddr en0' command to get IP.
+### Setup client on your laptop
+Download [MacOS Client](https://github.com/shadowsocks/ShadowsocksX-NG/releases), install, and enter server IP, port, password information in client. Change shadowsocks "HTTP proxy listen ip" to local ip. e.g 192.168.1.107. use 'ipconfig getifaddr en0' command to get IP.
 
-7. If you want to use shadowsocks proxy in command line:
+### Use shadowsocks proxy in command line
 ``` bash
 export http_proxy=http://192.168.1.107:1087;export https_proxy=http://192.168.1.107:1087;export no_proxy=localhost,127.0.0.0/8,192.0.0.0/8;
 ```

@@ -7,10 +7,10 @@ tags:
 ---
 Concourse is a greate tool for CI/CD.
 Here is a guide to setup Concourse on Ubuntu 18.04 from scratch in Corporate environment.
+<!-- more -->
+### Install Ubuntu 18.04.
 
-1. Install Ubuntu 18.04.
-
-2. Check DNS and hostname
+### Check DNS and hostname
 ```
 $ sudo vim /etc/resolv.conf
 nameserver <dns-server>
@@ -18,9 +18,8 @@ nameserver <dns-server>
 $ sudo vi /etc/hosts
 127.0.0.1       localhost.localdomain   localhost frankvm
 ```
-<!-- more -->
 
-3. Install cntlm
+### Install cntlm
 ```
 Set temporary proxy in following file for installing cntlm
 $ sudo touch /etc/apt/apt.conf.d/proxy.conf
@@ -55,7 +54,8 @@ Listen          <local-ip>:3128
 $ sudo systemctl restart cntlm
 ```
 
-4. Set proxy, replace <local-ip> with actual ip
+### Set proxy
+replace <local-ip> with actual ip
  ```
 $ sudo vi /etc/environment
 http_proxy=http://<local-ip>:3128/
@@ -73,7 +73,7 @@ Acquire::https::proxy "http://<local-ip>:3128/";
 reboot if necessary
 ```
 
-5. Follow below guides to install Docker
+### Install Docker
 
 https://docs.docker.com/install/linux/docker-ce/ubuntu/
 
@@ -89,19 +89,20 @@ Environment="HTTPS_PROXY=http://<local-ip>:3128/"
 Environment="NO_PROXY=localhost,127.0.0.*,10.*,192.168.*,*.bosch.com"
 ```
 
-1. When using tools like wget or docker to download HTTPS secured content, need to install trusted self-signed proxy certs.
+### Install certificates
+When using tools like wget or docker to download HTTPS secured content, need to install trusted self-signed proxy certs.
 ```
 Extract certs to /usr/local/share/ca-certificates
 $ sudo update-ca-certificates
 ```
 
-7. Install [Docker Compose](https://docs.docker.com/compose/install/#install-compose)
+### Install [Docker Compose](https://docs.docker.com/compose/install/#install-compose)
 
 
-8. If you want to install [Ruby](https://www.digitalocean.com/community/tutorials/how-to-install-ruby-on-rails-with-rbenv-on-ubuntu-18-04)
+### Install [Ruby](https://www.digitalocean.com/community/tutorials/how-to-install-ruby-on-rails-with-rbenv-on-ubuntu-18-04)
+(not relevant)
 
-
-9. Install Concourse
+### Install Concourse
 ```
 $ git clone https://github.com/concourse/concourse-docker.git && cd concourse-docker
 $ sudo ./generate-keys.sh
